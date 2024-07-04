@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 
-from app.domain.entities.base import ApplicationException
-
-
+@dataclass(eq=False)
+class ApplicationException(Exception):
+    @property
+    def message(self):
+        return 'Произошла ошибка приложения'
 @dataclass(eq=False)
 class TextTooLongException(ApplicationException):
     text: str
@@ -10,3 +12,16 @@ class TextTooLongException(ApplicationException):
     @property
     def message(self):
         return f'Слишком длинный текст сообщения "{self.text[:255]}..."'
+
+@dataclass(eq=False)
+class EmptyTextError(ApplicationException):
+    @property
+    def message(self):
+        return 'Текст не может быть пустым'
+
+
+@dataclass(eq=False)
+class ApplicationException(Exception):
+    @property
+    def message(self):
+        return 'Произошла ошибка приложения'
