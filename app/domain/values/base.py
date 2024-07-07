@@ -13,5 +13,5 @@ class BaseValueObject(ABC, Generic[VT]):
     def validate(self):
         ...
     @abstractmethod
-    def as_generic_type(self):
+    def as_generic_type(self) -> VT:
         ...
